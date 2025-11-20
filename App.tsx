@@ -7,8 +7,10 @@ import { Footer } from './components/Footer';
 import { Manifesto } from './components/Manifesto';
 import { Contact } from './components/Contact';
 import { Privacy } from './components/Privacy';
+import { Terms } from './components/Terms';
+import { AnimatePresence, motion } from 'framer-motion';
 
-export type Page = 'home' | 'contact' | 'privacy';
+export type Page = 'home' | 'contact' | 'privacy' | 'terms';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -25,17 +27,25 @@ export default function App() {
   const renderPage = () => {
     switch(currentPage) {
       case 'contact':
-        return <Contact />;
+        return <Contact key="contact" />;
       case 'privacy':
-        return <Privacy />;
+        return <Privacy key="privacy" />;
+      case 'terms':
+        return <Terms key="terms" />;
       default:
         return (
-          <>
+          <motion.div 
+            key="home"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <Hero onNavigate={setCurrentPage} />
             <Manifesto />
             <Comparison />
             <Features />
-          </>
+          </motion.div>
         );
     }
   };
@@ -44,7 +54,9 @@ export default function App() {
     <div className="min-h-screen bg-cream text-charcoal selection:bg-charcoal selection:text-cream overflow-hidden font-sans">
       <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
       <main>
-        {renderPage()}
+        <AnimatePresence mode="wait">
+          {renderPage()}
+        </AnimatePresence>
       </main>
       <Footer onNavigate={setCurrentPage} />
     </div>
