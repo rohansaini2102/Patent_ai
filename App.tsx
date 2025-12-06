@@ -8,6 +8,8 @@ import { Manifesto } from './components/Manifesto';
 import { Contact } from './components/Contact';
 import { Privacy } from './components/Privacy';
 import { Terms } from './components/Terms';
+import { FAQ } from './components/FAQ';
+import { HowItWorks } from './components/HowItWorks';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export type Page = 'home' | 'contact' | 'privacy' | 'terms';
@@ -34,7 +36,7 @@ export default function App() {
         return <Terms key="terms" />;
       default:
         return (
-          <motion.div 
+          <motion.div
             key="home"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -44,7 +46,9 @@ export default function App() {
             <Hero onNavigate={setCurrentPage} />
             <Manifesto />
             <Comparison />
+            <HowItWorks />
             <Features />
+            <FAQ />
           </motion.div>
         );
     }
