@@ -10,6 +10,10 @@ import { Privacy } from './components/Privacy';
 import { Terms } from './components/Terms';
 import { FAQ } from './components/FAQ';
 import { HowItWorks } from './components/HowItWorks';
+import { Stats } from './components/Stats';
+import { DefinitiveGuide } from './components/DefinitiveGuide';
+import { Testimonials } from './components/Testimonials';
+import { ComparisonTable } from './components/ComparisonTable';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export type Page = 'home' | 'contact' | 'privacy' | 'terms';
@@ -43,11 +47,25 @@ export default function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
+            {/* Hero - Primary value proposition */}
             <Hero onNavigate={setCurrentPage} />
+            {/* Stats - Social proof and metrics */}
+            <Stats />
+            {/* Manifesto - Brand story */}
             <Manifesto />
+            {/* Comparison - Before/After demo */}
             <Comparison />
+            {/* How It Works - Step by step for AEO */}
             <HowItWorks />
+            {/* Features - Core capabilities */}
             <Features />
+            {/* Comparison Table - Nexora vs alternatives */}
+            <ComparisonTable />
+            {/* Definitive Guide - AEO content hub */}
+            <DefinitiveGuide />
+            {/* Testimonials - Social proof */}
+            <Testimonials />
+            {/* FAQ - AEO optimization */}
             <FAQ />
           </motion.div>
         );
